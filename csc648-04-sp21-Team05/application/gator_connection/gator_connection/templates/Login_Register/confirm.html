@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <title>Email Verified</title>
+</head>
+
+<body>
+<center>
+    <h1 style='margin-lfet: 100px;'>{{ messgae }}</h1>
+
+    <script>
+        window.setTimeout("window.location='/home'",2000);
+
+    </script>
+</center>
+</body>
+{% endblock %}

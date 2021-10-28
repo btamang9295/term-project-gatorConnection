@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+
+<html>
+    <head>
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'css/app.css' %}">
+    </head>
+<body>
+    <A HREF="{% url 'team_members_angelo' %}">About Angelo</A> <br>
+    <A HREF="{% url 'about' %}">back to main</A>
+    <p>Hi, I'm Angelo. I am a senior at SFSU studying CS!</p>
+    
+    
+    <img src = "{% static 'img/angelo.png' %}">
+
+</body>
+</html>

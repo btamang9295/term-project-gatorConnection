@@ -1,0 +1,935 @@
+
+/*General browser reset style, also code that alec added*/
+* {
+  margin: 0px;
+  padding: 0px;
+} 
+
+body {
+    position: relative;
+    overflow-x: hidden !important;
+    /* below is css that alec added*/
+    box-sizing: border-box;
+    max-height: 100vh;
+    max-width: 100vw;
+    height: 100%;
+    /* stops here*/
+
+}
+
+
+.r_home_background{
+  /* The image used */
+  position: relative;
+  background-image: url('../pictures/restaurantsbg.jpg');  
+ 
+  /* Set a specific height */
+  min-height: 600px; 
+  max-width: 100%;
+
+  /* Create the parallax scrolling effect */
+  /* background-attachment: fixed; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: larger;
+
+}
+
+
+#select_option{
+  padding: 11px 6px;
+  margin: 8px 0px;
+
+  /* uncomment these to push the post an advertisement lower
+  margin-bottom: 7.5%;
+  */
+
+  display: inline-block;
+  position: relative;
+  left: 15%;
+}
+
+
+.search_resturant{
+    right: 40%;
+    margin-top: 10px;
+}
+.restaurant_search_box{
+  box-sizing: border-box;
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  position: relative;
+  left: 15%;
+}
+
+.restaurant_search_button{
+  padding: 11px 15px;
+  margin: 8px 0px;
+  position: relative;
+  left: 15%;
+  /* uncomment these to push the post an advertisement lower
+  margin-bottom: 7.5%;
+  */
+
+  display: inline-block;
+    
+}
+
+.empty-search-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 25vh;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  font-size: 36px;
+}
+
+.empty-search {
+box-sizing: border-box;
+display: block;
+height: 50%;
+width: 50%;
+
+}
+
+.restaurant-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+
+  align-self: center;
+  
+  margin: 32px;
+  padding: 24px;
+
+  width: 75%;
+  height: 250px;
+
+  background-color: var(--ternary-color);
+
+  box-shadow: 8px 8px 10px 2px rgba(0, 0, 0, 0.2);
+
+  text-decoration: none;
+  color: var(--primary-text-color-high);
+}
+
+.restaurant-card:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.restaurant-image {
+  box-sizing: border-box;
+  display: block;
+
+  margin-right: 16px;
+
+  max-width: 25%;
+
+  flex-shrink: 0;
+  height: auto;
+  width: auto;
+
+
+  background-color: var(--ternary-color);
+}
+
+.restaurant-info {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  text-align: start;
+}
+
+
+.button {
+  background-color: #eee488; 
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1 
+{width: 100px;}
+
+#container{
+  text-align: right;
+}
+
+
+ 
+/* below is css for modals and the button*/
+input[type=text_modal_restaurant_post]{
+  position: center;
+  width: 95%;
+  padding: 12px 20px;
+  margin: 12px 12px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: rgb(239, 235, 240);
+}
+
+input[type=text_modal_restaurant_zip_number]{
+  position: center;
+  width: 40%;
+  padding: 12px 20px;
+  margin: 12px 12px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: rgb(239, 235, 240);
+}
+
+textarea[type=text_restaurant_description]{
+  resize: none;
+  width: 95%;
+  padding: 12px 12px;
+  margin: 12px 12px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: rgb(239, 235, 240);
+
+}
+
+.restaurant_street{
+  float:left; 
+  display:inline; 
+  width: 49%;
+}
+
+.request_button{
+  background-color: #525252bd;
+  width: 30%;
+  position: static;
+  position: sticky;
+  left: 35%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+/* CSS for checkmark radio buttons in restaurant request modal */
+.check-container {
+	display:inline-block;
+  position: relative;
+  padding-left: 35px;
+  left: 5%;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.check-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.check-container input:checked ~ .checkmark {
+  background-color: #9081c5;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.check-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.check-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+
+/* everything below here is css that alec added for the navbar and footer    */
+footer {
+  position: relative;
+
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  padding-left: 30px;
+
+  color: white;
+  background-color: #222;
+}
+
+footer p { 
+  margin: 16px;
+}
+
+.footer-link {
+  margin: 16px;
+  text-decoration: none;
+  color: white;
+}
+
+.footer-link:hover {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+#page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  min-height: 100vh;
+}
+
+.navbar-inverse {
+  margin: 0px;
+  border-radius: 0px;
+  width: 100%;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.navbar-default {
+  padding: 0px;
+  margin: 0px;
+}
+
+.navbar-default .navbar-brand {
+   display: flex;
+   align-items: center;
+   padding: 5px;
+ }
+
+ .navbar-brand img {
+   height: 100%;
+   margin-right: 20px;
+ }
+/* everything here is modal related */
+ .modal-title{
+  padding: 13px 8px;
+  margin: 0px 0px;
+  margin-top: 0px;
+  
+  }
+  
+  
+  .modal-body{
+    padding-left: 8px;
+  }
+  
+  /* All text inside the modals */
+  .modal-body p{
+    font-size: 17px;
+  padding-left: 13px;
+  margin-bottom: -15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  .modal-footer #delete_btn{
+    position: relative;
+    right: 70%;
+  }
+  
+  
+  /* modal fonts*/
+  .modal-body h3{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  
+  .p-inline-zip{
+    display: inline;
+    padding-right: 27%;
+   
+    
+  }
+  
+
+  .p-inline{
+    display: inline;
+    
+  }
+  .p-inline-business-hours{
+    display: inline;
+    padding-bottom: 70px;
+    
+  }
+
+ .spacer{
+    font-size: 0; 
+    height: 15px;
+    line-height: 0;
+   
+  }
+  .p-inline-number{
+    display: inline;
+    
+  }
+
+  .submit_btn{
+    position: relative;
+    left: 80%;
+    background-color: #9081c5;
+    border-radius:5px;
+    border:3px solid #626263;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    padding:7px 18px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #9081c5;
+  }
+
+
+  /* star rating CSS */
+  .star-rating {
+    display:flex;
+    flex-direction: row-reverse;
+    font-size:1.5em;
+    justify-content:space-around;
+    padding:0 .2em;
+    text-align:center;
+    width:5em;
+    margin-left: 10px;
+    display: inline-flex;
+  }
+  
+  .star-rating input {
+    display:none;
+  }
+  
+  .star-rating label {
+    color:#ccc;
+    cursor:pointer;
+  }
+  
+  .star-rating :checked ~ label {
+    color:#f90;
+  }
+  
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+    color:#fc0;
+  }
+
+
+/* Solid STARS */
+.star-rating-solid {
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+  margin-left: 10px;
+  display: inline-flex;
+
+}
+
+.star-rating-solid input {
+  display:none;
+}
+
+.restaurant_list {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+  .restaurant_list ul{
+    position: center;
+    
+  }
+  
+  /*
+  .description_box_res{
+  width: 500px;
+  height: 200px;
+  border: 1px solid blue;
+  box-sizing: border-box;
+  float: left;
+  margin-left: 12px;
+  }
+
+  .description_box p {
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+  }
+  */
+
+   .description_box_restaurant {
+    padding: 1rem;
+    background: #fff;
+    width: 575px;
+    display: inline-block;
+ }
+
+
+ .description_box_restaurant h3, .description_box_restaurant h4 {
+       font-family: 'Raleway', sans-serif;
+ }
+ .description_box_restaurant h3 {
+    line-height: 1;
+    margin: 0;
+    font-size: 3.7rem;
+ }
+  .description_box_restaurant h4 {
+    font-size: 2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #000000;
+    margin-top: 5px;
+ }
+ 
+  
+  .description_box_restaurant p:first-of-type {
+    margin-top: 1.25rem;
+ }
+
+
+
+
+  .resturant_img_1{
+    
+    background-image: url('../pictures/restaurant_img/krustykrab.jpg');
+    height: 250px;
+    width: 400px;
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; 
+    margin-left: 100px; 
+    margin-top: 45px;
+
+
+    /* hover */
+      -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+  }
+  .resturant_img_1:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+
+
+    .resturant_img_2{
+    
+      background-image: url('../pictures/restaurant_img/central_perk.jpg');
+      height: 250px;
+      width: 400px;
+      display: inline-block;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain; 
+      margin-left: 100px; 
+
+       /* hover */
+       -webkit-transform: scale(1);
+       transform: scale(1);
+       -webkit-transition: .3s ease-in-out;
+       transition: .3s ease-in-out;
+    }
+
+    .resturant_img_2:hover {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+      .resturant_img_3{
+    
+        background-image: url('../pictures/restaurant_img/ichiraku_ramen.jpg');
+        height: 250px;
+        width: 365px;
+        display: inline-block;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-left: 125px; 
+
+
+       /* hover */
+       -webkit-transform: scale(1);
+       transform: scale(1);
+       -webkit-transition: .3s ease-in-out;
+       transition: .3s ease-in-out;
+      }
+
+      .resturant_img_3:hover {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+    
+    
+
+      .write_review_button{
+    background-color: #9081c5;
+    width: 14%;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+      float: left;
+      }
+
+      input[type=text_modal_review_post]{
+        position: center;
+        width: 95%;
+        padding: 12px 20px;
+        margin: 12px 12px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: rgb(239, 235, 240);
+      }
+
+      textarea[type=text_review_description]{
+        resize: none;
+        width: 95%;
+        padding: 12px 12px;
+        margin: 12px 12px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: rgb(239, 235, 240);
+      
+      }
+      
+      input[type=text_modal_housing_request]{
+        width: 50%;
+        padding: 12px 12px;
+        margin: 8px 8px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      
+      .modal-title{
+      padding: 13px 8px;
+      margin: 0px 0px;
+      margin-top: 0px;
+      
+      }
+      
+      
+      .modal-body{
+        padding-left: 8px;
+      }
+      
+      /* All text inside the modals */
+      .modal-body p{
+        font-size: 17px;
+      padding-left: 13px;
+      margin-bottom: -15px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      }
+      
+      .modal-footer #delete_btn{
+        position: relative;
+        right: 70%;
+      }
+      
+      
+      /* Housing post delete promt text*/
+      .modal-body h3{
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
+   
+      /* restaurant_post_img */
+
+      .restaurant_post_1_img{
+        background-image: url('../pictures/restaurant_img/kraby_patty.jpg');
+        width : 75%;
+        height: 400px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+        margin-left: 100px; 
+      }
+      .restaurant_post_2_img{
+        background-image: url('../pictures/restaurant_img/coffee.jpg');
+        width : 75%;
+        height: 400px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+        margin-left: 100px; 
+      }
+      .restaurant_post_3_img{
+        background-image: url('../pictures/restaurant_img/ramen.jpg');
+        width : 75%;
+        height: 400px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+        margin-left: 100px; 
+      }
+
+
+
+
+
+      
+
+.write_review_button_detail{
+  background-color: #525252bd;
+  width: 15%;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: left;
+  position: relative;
+  left: 50%;
+}
+
+.profile_pic_plankton{
+  background-image: url('../pictures/restaurant_img/plankton.jpg');
+  height: 100px;
+  width: 150px;
+  background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+}
+
+.profile_pic_patrick{
+  background-image: url('../pictures/restaurant_img/patrick.jpg');
+  height: 100px;
+  width: 150px;
+  background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+}
+
+.profile_pic_janice{
+  background-image: url('../pictures/restaurant_img/janice.jpg');
+  height: 100px;
+  width: 150px;
+  background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+}
+
+.profile_pic_larry{
+  background-image: url('../pictures/restaurant_img/larry.jpg');
+  height: 100px;
+  width: 150px;
+  background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+}
+
+.profile_pic_choji{
+  background-image: url('../pictures/restaurant_img/choji.jpg');
+  height: 100px;
+  width: 150px;
+  background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+}
+
+.profile_pic_shikamaru{
+  background-image: url('../pictures/restaurant_img/shikamaru.jpg');
+  height: 100px;
+  width: 150px;
+  background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+}
+
+.topLeft {
+  width: 100%;
+
+  padding-right: 10%;
+  margin-bottom: 15%;
+
+  
+}
+
+.restaurant-home-title {
+  text-align: right;
+  font-size: 85px;
+  font-family: heading;
+  color: white;
+}
+
+.restaurant-home-mission-statement {
+  font-size: 28px;
+  text-align: right;
+  font-family: heading;
+  font-weight: 1000;
+  color: white;
+}
+
+
+@font-face {
+  font-family: heading;
+  src: url('../pictures/heading.ttf');
+  font-weight: bold;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+.wrapper {
+  display: flex;
+  width: 500px;
+  justify-content: center;
+}
+
+.cta {
+  display: flex;
+  padding: 10px 45px;
+  width: 500px;
+  text-decoration: none;
+  font-family: Avenir, sans-serif;
+  font-size: 20px;
+  color: white;
+  background: #9081c5;
+  transition: 0.6s;
+  box-shadow: 6px 6px 0 black;
+  transform: skewX(-15deg);
+  cursor: pointer;
+}
+
+.cta:focus {
+  outline: none; 
+}
+
+.cta:hover {
+   transition: 0.5s;
+   box-shadow: 10px 10px 0 #FBC638;
+}
+
+path.one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+path.two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@keyframes color_anim {
+  0% {
+      fill: white;
+  }
+  50% {
+      fill: #FBC638;
+  }
+  100% {
+      fill: white;
+  }
+} 
+
+.animate-pop-in1 {
+  animation: pop-in 3s 1s cubic-bezier(0, 0.5, 0, 1) forwards;
+  opacity: 0;
+  padding-top: 100px;
+} 

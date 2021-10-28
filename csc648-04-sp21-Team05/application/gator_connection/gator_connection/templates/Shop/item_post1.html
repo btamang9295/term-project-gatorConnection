@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+<h1>
+    <mark>Shop</mark>
+</h1>
+
+{% block content %}
+<head>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/items.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+
+
+</head>
+
+
+<body>
+
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li id="list-1" data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li id="list-2" data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li id="list-3" data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li id="list-4" data-target="#carousel-example-generic" data-slide-to="3"></li>
+
+    </ol>
+    <div class="carousel-inner" align=center>
+
+        <div class="item active">
+            <div class="card">
+                <div class="card-body" id="card1">
+                    <h2 class="card-text">
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="item">
+            <div class="card">
+                <div class="card-body" id="card2">
+                    <h2 class="card-text">
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="card">
+                <div class="card-body" id="card3">
+                    <h2 class="card-text">
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="card">
+                <div class="card-body" id="card4">
+                    <h2 class="card-text">
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <a class="left carousel-control" id="left_carousel_control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" id="right_carousel_control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+<div id="description-box">
+    <h3>
+        Detail
+    </h3>
+    <p>Location : </p>
+    <p>Description: </p>
+    <p>Price: </p>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn-interested-edit" data-toggle="modal" data-target="#modal-interested">
+    Intrested
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-interested" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Tell us about yourself!</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- input in db -->
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    Enter First Name:
+                    <input type="text_modal_item_post" placeholder="Enter First Name" name="first_name" required/><br/>
+
+                    Enter Last Name:
+                    <input type="text_modal_item_post" placeholder="Enter Last Name" name="last_name" required/><br/>
+
+                    <p> Enter SFSU email</p>
+                    <input type="text_modal_item_post" placeholder="Enter SFSU email" name="email" required/><br/>
+
+                    <p class="p-inline">When will you graduate? </p>
+                    <input type="month" name="graduation_month" required/><br/><br/>
+
+                    Tell us a bit about yourself
+                    <textarea placeholder="Tell us a bit about yourself!" type="text_item_description" rows="5" cols="60" name="about_me"></textarea>
+                    <br><br>
+
+
+                    <input type="submit" class="submit_btn" value="submit"/>
+                </form>
+
+                <!-- input in db -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<!--Edit your Lisitng button -->
+<button type="button" class="btn-editLisiting" data-toggle="modal" data-target="#modal-editListing">
+    Edit your Listing
+</button>
+
+
+<!-- Modal for Editing the item List  -->
+<div class="modal fade" id="modal-editListing" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Edit your Listing</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- input in db -->
+
+                <form action="{% url 'item_listing' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p>Title:</p>
+                    <input type="text_modal_item_post" placeholder="Change your  Title for item" name="title" required/>
+                    <p>Pricing: $ </p>
+                    <input type="text_modal_item_post" placeholder="Change your price" name="price" required/>
+                    <p> Description: </p>
+                    <textarea placeholder="Enter Description of Item here" type="text_item_description" rows="5" cols="60" name="description"></textarea>
+                    </br> </br>
+
+
+                    <p class="p-inline">Change Preferred Method of Payment</p>
+                    <select name="preferred_payment" id="payment_type">
+
+                        <option value="Venmo">Venmo</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Check">Check</option>
+                    </select>
+                    </br></br>
+
+
+                    <p class="p-inline">Upload Images</p>
+                    <input type="file" id="myFile" name="image_path">
+                    </br></br>
+
+
+                    <input type="submit" class="submit_btn" value="submit"/>
+                </form>
+
+                <!-- input in db -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<!--Delete your Lisitng button -->
+<button type="button" class="btn-deleteLisiting" data-toggle="modal" data-target="#modal-deleteListing">
+    Delete your Listing
+</button>
+
+
+<!-- Modal for deleting  the item List  -->
+
+<div class="modal fade" id="modal-deleteListing" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Delete this Listing</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+                <h3>
+                    Are you sure you want to Delete this Listing ?
+                </h3>
+                <!-- input in db -->
+
+                <form action="{% url 'item_listing' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="delete_btn" class="btn btn-default">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-- this is a test -->
+</body>
+
+
+{% endblock %}

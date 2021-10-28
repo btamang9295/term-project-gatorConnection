@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/login_register.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/notification.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+
+    <script src="../../static/scripts/notifications.js" defer></script>
+
+</head>
+
+<div id="alert-messages-container">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<!-- <div id="accept-msg" class="container-fluid p-0 hidden">
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button id="accept-msg-button" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        Accepted Request
+    </div>
+</div>
+
+<div id="reject-msg" class="container-fluid p-0 hidden">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button id="reject-msg-button" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        Reject Request
+    </div>
+</div> -->
+
+
+<div class="notification-request-container">
+    <div class="notification-container">
+        <div class="title-container">
+            <div class="title">Notifications</div>
+        </div>
+
+        {% if data.notifications|length <= 0 %}
+        <div class="none-found" style="color:white">No notifications
+        </div>
+
+        {% else %}
+
+        {% for notification in data.notifications %}
+        <div class="notification-card">
+            <img
+                    class="{% if notification.sender == 'Gator Connection' %} notification-banner {% else %} notification-banner-2 {% endif %}">
+            <div class="notification-description"> {{notification.message}}
+            </div>
+            <div class="sender-info">
+                <p class="sender-organization"> {{notification.createdat}} </p>
+                <p class="sender-user">Gator Connection</p>
+            </div>
+        </div>
+        
+        {% endfor %}
+
+        {% endif %}
+    </div>
+    <div class="request-container">
+        <div class="title-container">
+            <div class="title">Requests</div>
+        </div>
+
+
+        {% if data.requests|length > 0 %}
+
+        {% for housing_request in data.requests.housing_requests %}
+        <div class="request-card">
+            <div class="request-title-container">
+                <div class="request-title">
+                    Housing Listing Request
+                </div>
+                <div class="request-date">
+                    {{housing_request.housing_request.createdat}}
+                </div>
+            </div>
+            <div class="notification-description"> {{housing_request.housing_form.about_me}}
+            </div>
+            <div class="sender-info">
+                <p class="sender-organization">{{housing_request.email}}</p>
+                <p class="sender-user">{{housing_request.housing_form.registered_user.first_name}}
+                    {{housing_request.housing_form.registered_user.last_name}} </p>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        {% for item_request in data.requests.item_requests %}
+        <div class="request-card">
+            <div class="request-title-container">
+                <div class="request-title">
+                    Item Listing Request
+                </div>
+                <div class="request-date">
+                    {{item_request.createdAt}}
+                </div>
+            </div>
+            <div class="notification-description">${{item_request.item_request.item_listing.price}} - {{item_request.item_request.item_listing.post.title}}
+            </div>
+            <div class="sender-info">
+                <p class="sender-organization">{{item_request.email}}</p>
+                <p class="sender-user">{{item_request.item_request.registered_user.first_name}}
+                    {{item_request.item_request.registered_user.last_name}} </p>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        {% if request.session.is_approved %}
+
+        {% for account_request in data.requests.account_requests.super_users %}
+        <div class="request-card account-request-card">
+            <div class="request-title-container">
+                <div class="request-title">
+                    Super User Account Request
+                </div>
+                <div class="request-date">
+                    {{account_request.superuser_account.account.createdat}}
+                </div>
+            </div>
+            <div class="request-description-section">
+                <div class="accept-buttons">
+                    <button id="superuseraccept-{{account_request.superuser_account.super_user_id}}" class="btn btn-success"
+                            onclick="handleRequestEvent(this.id, this, true, 'superUser')">
+                        Accept
+                    </button>
+                    <button id="superuserreject-{{account_request.superuser_account.super_user_id}}" class="btn btn-danger"
+                            onclick="handleRequestEvent(this.id, this, false, 'superUser')">
+                        Reject
+                    </button>
+                </div>
+
+            </div>
+            <div class="sender-info">
+                <p class="sender-organization">{{account_request.superuser_account.account.email}}</p>
+                <p class="sender-user">{{account_request.registered_user.first_name}}
+                    {{account_request.registered_user.last_name}} </p>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+        {% if request.session.is_approved %}
+
+        {% for account_request in data.requests.account_requests.admin_users %}
+        <div class="request-card account-request-card">
+            <div class="request-title-container">
+                <div class="request-title">
+                    Admin Account Request
+                </div>
+                <div class="request-date">
+                    {{account_request.admin_account.account.createdat}}
+                </div>
+            </div>
+            <div class="request-description-section">
+                <div class="accept-buttons">
+                    <button id="adminaccept-{{account_request.admin_account.admin_account_id}}" class="btn btn-success"
+                            onclick="handleRequestEvent(this.id, this, true, 'admin')">
+                        Accept
+                    </button>
+                    <button id="adminreject-{{account_request.admin_account.admin_account_id}}" class="btn btn-danger"
+                            onclick="handleRequestEvent(this.id, this, false, 'admin')">
+                        Reject
+                    </button>
+                </div>
+
+            </div>
+            <div class="sender-info">
+                <p class="sender-organization">{{account_request.admin_account.account.email}}</p>
+                <p class="sender-user">{{account_request.registered_user.first_name}}
+                    {{account_request.registered_user.last_name}} </p>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+        {% if request.session.is_approved %}
+
+        {% for restaurant_request in data.requests.restaurant_requests %}
+        <div class="request-card restaurant-request-card">
+            <div class="request-title-container">
+                <div class="request-title">
+                    Restaurant Request
+                </div>
+                <div class="request-date">
+                    Business Hours: {{restaurant_request.restaurant_request.open}} -
+                    {{restaurant_request.restaurant_request.close}}
+                </div>
+            </div>
+            <div class="request-description-section">
+                <div class="request-image">
+                    <img src="../media/{{restaurant_request.images.0.image_path}}">
+                </div>
+                <div class="request-right-column">
+                    <div class="request-description">{{restaurant_request.post.description}}
+                    </div>
+                    <div class="accept-buttons">
+                        <button id="restaurantrequestaccept-{{restaurant_request.restaurant_request.restaurant_request_id}}" class="btn btn-success" onclick="handleRequestEvent(this.id, this, true, 'restaurant')">
+                            Accept
+                        </button>
+                        <button id="restaurantrequestreject-{{restaurant_request.restaurant_request.restaurant_request_id}}" class="btn btn-danger" onclick="handleRequestEvent(this.id, this, false, 'restaurant')">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="sender-info">
+                <p class="sender-organization">{{restaurant_request.restaurant_request.address.number}}
+                    {{restaurant_request.restaurant_request.address.street}}
+                    {{restaurant_request.restaurant_request.address.city}}
+                    {{restaurant_request.restaurant_request.address.state}}
+                    {{restaurant_request.restaurant_request.address.zipcode}}</p>
+                <p class="sender-user">{{restaurant_request.restaurant_request.name}} </p>
+            </div>
+            
+        </div>
+        {% endfor %}
+        {% else %}
+
+        <div class="none-found" style="color:white">No requests</div>
+
+        {% endif %}
+
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

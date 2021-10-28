@@ -1,0 +1,361 @@
+
+.restaurant-detail-content {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+
+    width: 100%;
+    height: 100%;
+
+    color: var(--primary-text-color-high);
+}
+
+.restaurant-details {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.restaurant-detail-review {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: column;
+
+    height: calc(100vh - 100px);
+    width: 75%;
+
+    flex-grow: 3;
+
+    margin-left: 2%;
+
+    overflow-y: auto;
+}
+
+
+.restaurant-main-image {
+    
+    height: auto;
+    width: 75%;
+    min-width: 25%;
+
+    flex-grow: 1;
+
+    margin: 16px 0px;
+
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; 
+
+    background-color: grey;
+  }
+  
+.restaurant-details-info {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 8px;
+}
+
+.restaurant-details-info-description {
+    display: block;
+
+    flex-grow: 1;
+
+    border-bottom: 1px solid grey;
+
+}
+
+.restaurant-details-info-other {
+    display: block;
+    margin-top: 8px;
+    padding-top: 8px;
+}
+
+.review-section {
+    display: flex;
+
+    width: 100%;
+
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: start;
+
+    padding: 8px;
+
+    color: var(--primary-text-color);
+}
+
+.review-section-title-section {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: row;
+
+    margin-top: 8px;
+    padding-top: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+.review-section-title {
+    display: block;
+
+    font-size: 24px;
+}
+
+.rating {
+    flex-grow: 1;
+    padding-top: 4px;
+    padding-left: 16px;
+}
+.rating .star-rating-solid {
+    margin: 0;
+    padding: 0;
+}
+
+
+.my-btn {
+    background-color: rgb(131, 6, 131);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+
+    margin: 0px 8px;
+
+}
+
+
+#review-image-not-logged-in {
+    padding-top: 8px;
+}
+
+
+
+/* review section demo */
+
+.blog-card {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: column;
+
+    box-shadow: 6px 6px 8px 2px rgba(0, 0, 0, 0.2);
+
+    margin-left: 2%;
+    margin-bottom: 1.6%;
+    padding: 8px;
+    
+    z-index: 0;
+
+    line-height: 1.4;
+    font-family: 'Raleway', sans-serif;
+
+    background-color: var(--ternary-color);
+    color: var(--primary-text-color-high);
+ }
+
+
+.blog-card-title-section {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: row;
+
+    width: 100%;
+    height: auto;
+}
+
+.blog-card-title {
+    display: block;
+    flex-grow: 1;
+
+    font-size: 20px;
+}
+
+.blog-card-title-section .rating{
+    margin: 0;
+    flex-grow: 0;
+}
+
+.blog-card .meta {
+    position: relative;
+    z-index: 0;
+    height: 180px;
+}
+.blog-card .photo {
+   height:200px;
+    width:200px;
+    margin:0;
+}
+.blog-card .description {
+    padding: 1rem;
+    background: var(--ternary-color);
+    position: relative;
+    z-index: 1;
+}
+.blog-card .description h1, .blog-card .description h2 {
+       font-family: 'Raleway', sans-serif;
+}
+.blog-card .description h1 {
+    line-height: 1;
+    margin: 0;
+    font-size: 1.7rem;
+}
+.blog-card .description h2 {
+    font-size: 1rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #a2a2a2;
+    margin-top: 5px;
+}
+
+.blog-card p:first-of-type {
+    margin-top: 1.25rem;
+}
+.blog-card p:first-of-type:before {
+    content: "";
+    position: absolute;
+    height: 5px;
+    background: #5ad67d;
+    width: 10%;
+    margin-top:-1rem;
+    border-radius: 3px;
+}
+
+@media (min-width: 640px) {
+    .blog-card {
+        flex-direction: row;
+        max-width: 700px;
+   }
+    .blog-card .meta {
+        flex-basis: 0%;
+        height: 200px;
+   }
+    .blog-card .description {
+        flex-basis: 95%;
+   }
+    .blog-card.alt {
+        flex-direction: row-reverse;
+   }
+
+    .blog-card.alt .details {
+        padding-left: 25px;
+   }
+}
+
+.related-restaurants {
+    max-height: calc(100% - 116px);
+    height: calc(100vh - 116px);
+    width: 25%;
+    flex-grow: 1;
+
+    margin: 8px;
+    padding: 8px;
+
+    overflow-y: auto;
+
+    border-left: 2px solid grey;
+}
+
+.related-restaurants-title {
+    box-sizing: border-box;
+    display: block;
+
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid grey;
+
+    font-size: 24px;
+}
+
+.related-restaurant-card {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: row;
+
+    height: 100px;
+    width: 100%;
+
+    margin: 8px 0px;
+
+    background-color: var(--ternary-color);
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+
+    text-decoration: none;
+    color: var(--primary-text-color-high);
+}
+
+.related-restaurant-card:hover {
+    text-decoration: none;
+    color: var(--primary-text-color);
+    cursor: pointer;
+}
+
+.related-restaurant-img {
+    box-sizing: border-box;
+    display: block;
+
+    height: 100%;
+    width: 25%;
+
+    background-color: var(--ternary-color);
+}
+
+.related-restaurant-info {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: column;
+    flex-grow: 1;
+
+    width: 75%;
+
+
+    padding: 8px;
+}
+
+.related-restaurant-name {
+    box-sizing: border-box;
+    display: block;
+
+    font-size: 20px;
+}
+
+.related-restaurant-rating {
+    padding: 0;
+    margin: 0;
+}
+
+.related-restaurant-rating .star-rating-solid {
+    padding: 0;
+    margin: 0;
+}
+
+.related-restaurant-description {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.related-restaurant-rating .star-rating-solid .star {
+    display: block;
+    width: 20%;
+    margin: 2px;
+
+}

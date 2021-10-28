@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+<h1>
+    <mark>Shop</mark>
+</h1>
+
+{% block content %}
+<head>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/home.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    
+
+</head>
+
+    <!-- Team Container -->
+
+    <div class="w3-container  w3-center" id="team">
+        <h2 class="team"></h2>
+        <img src="{% static 'pictures/team.png' %}">
+
+        <div class="w3-row">
+ 
+
+            <div class="w3-quarter">
+
+                <img src="{% static 'pictures/alec_image.jpg' %}" style="width:48%" class="w3-circle w3-hover-opacity">
+                <h3 class="team-cards-font-color">Alec Stephen Tenefranci </h3>
+                <p class="team-cards-font-color">Team Lead </p>
+             
+            </div>
+
+ 
+            <div class="w3-quarter">
+
+                <img src="{% static 'pictures/angelo.jpeg' %}" style="width:45%" class="w3-circle w3-hover-opacity">
+                <h3 class="team-cards-font-color">Angelo Gloria Reyes</h3>
+                <p class="team-cards-font-color">Back-End Lead</p>
+              
+            </div>
+
+            <div class="w3-quarter">
+                <img src="{% static 'pictures/Lakshita.jpg' %}" style="width:45%" class="w3-circle w3-hover-opacity">
+                <h3 class="team-cards-font-color">Lakshita Chugh</h3>
+                <p class="team-cards-font-color">Front-End Lead</p>
+               
+            </div> 
+
+            <div class="w3-quarter">
+                <img src="{% static 'pictures/Benjamin.jpg' %}" style="width:45%" class="w3-circle w3-hover-opacity">
+                <h3 class="team-cards-font-color">Benjamin Patrick Kao
+                </h3>
+                <p class="team-cards-font-color">Back-End Member</p>
+               
+            </div>
+            <div class="w3-third">
+                <br>
+                <img src="{% static 'pictures/bikram.jpeg' %}" style="width:38%" class="w3-circle w3-hover-opacity">
+                <h3 class="team-cards-font-color">Bikram Tamang</h3>
+                <p class="team-cards-font-color">Front-End Member</p>
+              
+            </div>
+       
+            <div class="w3-third">
+                <img src="{% static 'pictures/carmen.jpg' %}" style="width:45%" class="w3-circle w3-hover-opacity">
+                <h3 class="team-cards-font-color">Carmen Denisse Paisano</h3>
+                <p class="team-cards-font-color">Front-End Member</p>
+               
+            </div>
+
+
+            <div class="w3-third">
+                <img src="{% static 'pictures/Jiaxin.jpg' %}" style="width:40%" class="w3-circle w3-hover-opacity">
+                <h3 class="team-cards-font-color">Jiaxin Yu</h3>
+                <p class="team-cards-font-color">Back-End Member </p>
+               
+            </div>
+           
+
+<br>
+        </div>
+        &nbsp;
+        &nbsp;
+    </div>
+
+
+{% endblock %}

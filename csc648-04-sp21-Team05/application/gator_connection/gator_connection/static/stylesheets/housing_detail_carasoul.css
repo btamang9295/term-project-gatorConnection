@@ -1,0 +1,40 @@
+.filter-selectbox{
+  padding: 12px 6px;
+  margin: 8px 0;
+  display: inline-block;
+}
+
+.carousel-inner > .item > img {
+    width:600px;
+    height:600px;
+  }
+
+
+#myCarousel {
+
+    width: 600px;
+    height: 100%;
+    right: 25px; 
+}
+
+
+
+#carasoul-section {
+    width: 100%;
+    display: flex;
+}
+ 
+.column_housing_detail_carasoul{
+    padding-top: 2%;
+    position: relative;
+    left: 10%;
+  }
+ 
+  #housing-detail-info{
+    width: 50%;
+   
+}
+/* below makes all text in housing detail white */
+
+
+

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/restaurants.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/restaurants_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+
+</head>
+
+{% if messages %}
+{% for message in messages %}
+<div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<div class="restaurant-detail-content">
+    <div class="restaurant-detail-review">
+        <h1>{{restaurant_data.restaurant.name}}</h1>
+
+        <div class="restaurant-details">
+            <img class="restaurant-main-image" src="../media/{{restaurant_data.images.0.image_path}}">
+            <div class="restaurant-details-info">
+                <div class="restaurant-details-info-description">
+                    <h3>Description: </h3>
+                    <p>{{restaurant_data.restaurant.description}}</p>
+                </div>
+                <div class="restaurant-details-info-other">
+                    <h4>Location: {{restaurant_data.address.number}} {{restaurant_data.address.street}}, {{restaurant_data.address.city}} {{restaurant_data.address.zipcode}}</h4>
+                    <h4>Business Hours: {{restaurant_data.restaurant.open}} - {{restaurant_data.restaurant.close}}</h4>
+                    <h4>Takeout: {{restaurant_data.restaurant.takeout}}</h4>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="review-section">
+            <div class="review-section-title-section">
+                <div class="review-section-title">Reviews</div>
+                <div class="rating">
+                    <div class="star-rating-solid">
+                        <input type="radio" id="5-stars" name="rating" value="5"/>
+                        <label for="5-stars" class="star">{% if restaurant_data.rating.rating__avg >= 5 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                        <input type="radio" id="4-stars" name="rating" value="4"/>
+                        <label for="4-stars" class="star">{% if restaurant_data.rating.rating__avg >= 4 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                        <input type="radio" id="3-stars" name="rating" value="3"/>
+                        <label for="3-stars" class="star">{% if restaurant_data.rating.rating__avg >= 3 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                        <input type="radio" id="2-stars" name="rating" value="2"/>
+                        <label for="2-stars" class="star">{% if restaurant_data.rating.rating__avg >= 2 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                        <input type="radio" id="1-star" name="rating" value="1"/>
+                        <label for="1-star" class="star">{% if restaurant_data.rating.rating__avg >= 1 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                    </div>
+                </div>
+                {% if request.session.is_loggedin %}
+                <button type="button" class="my-btn" data-toggle="modal" data-target="#modal-review-2">
+                    Write a review
+                </button>
+                {% elif request.session.is_loggedin == null %}
+                <div id="review-image-not-logged-in"> You must be logged in to post a review.</div>
+                {%elif not request.session.reg_user_id == null and request.session.email_verified == False%}
+                <div style="color: white;">Please check your sfsu email to verify your account to create a Restaurant Review.</div>
+
+                {% endif %}
+            </div>
+
+
+            {% if restaurant_data.reviews|length <= 0 %}
+            <h4>No reviews</h4>
+            {% else %}
+            {% for review in restaurant_data.reviews %}
+            <div class="blog-card">
+                <div class="description">
+                    <div class="blog-card-title-section">
+                        <div class="blog-card-title">{{review.review.title}}</div>
+                        <div class="rating">
+                            <div class="star-rating-solid">
+                                <input type="radio" id="5-stars" name="rating" value="5"/>
+                                <label for="5-stars" class="star">{% if review.review.rating >= 5 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                                <input type="radio" id="4-stars" name="rating" value="4"/>
+                                <label for="4-stars" class="star">{% if review.review.rating >= 4 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                                <input type="radio" id="3-stars" name="rating" value="3"/>
+                                <label for="3-stars" class="star">{% if review.review.rating >= 3 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                                <input type="radio" id="2-stars" name="rating" value="2"/>
+                                <label for="2-stars" class="star">{% if review.review.rating >= 2 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                                <input type="radio" id="1-star" name="rating" value="1"/>
+                                <label for="1-star" class="star">{% if review.review.rating >= 1 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 style="color: white;">{{review.review.registered_user.first_name}} {{review.review.registered_user.last_name}}</h2>
+                    <p> {{review.review.description}}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% endif %}
+        </div>
+
+
+    </div>
+    <div class="related-restaurants">
+        <div class="related-restaurants-title">Related Restaurants</div>
+
+        {% for related_restaurant in restaurant_data.related_restaurants %}
+        <a class="related-restaurant-card" href="{% url 'restaurant_detail' restaurant_id=related_restaurant.restaurant.restaurant_id %}">
+            <img class="related-restaurant-img" src="../media/{{related_restaurant.images.0.image_path}}"/>
+            <div class="related-restaurant-info">
+                <div class="related-restaurant-name">{{related_restaurant.restaurant.name}}</div>
+                <div class="related-restaurant-rating">
+                    <div class="star-rating-solid">
+                        <input type="radio" id="5-stars" name="rating" value="5"/>
+                        <label for="5-stars" class="star">{% if related_restaurant.rating.rating__avg >= 5 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                        <input type="radio" id="4-stars" name="rating" value="4"/>
+                        <label for="4-stars" class="star">{% if related_restaurant.rating.rating__avg >= 4 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                        <input type="radio" id="3-stars" name="rating" value="3"/>
+                        <label for="3-stars" class="star">{% if related_restaurant.rating.rating__avg >= 3 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                        <input type="radio" id="2-stars" name="rating" value="2"/>
+                        <label for="2-stars" class="star">{% if related_restaurant.rating.rating__avg >= 2 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                        <input type="radio" id="1-star" name="rating" value="1"/>
+                        <label for="1-star" class="star">{% if related_restaurant.rating.rating__avg >= 1 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                    </div>
+                </div>
+                <div class="related-restaurant-description">{{related_restaurant.restaurant.description}}</div>
+            </div>
+        </a>
+        {% endfor %}
+
+    </div>
+</div>
+<!-- Modal -->
+
+<div class="modal fade" id="modal-review-2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Write a Review</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- input in db -->
+
+                <form action="{% url 'review_restaurant' restaurant_id=restaurant_data.restaurant.restaurant_id %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+                    <p>Title:</p>
+                    <input type="text_modal_review_post" placeholder="Enter Title for review" name="title" required/>
+                    <p class="p-inline">Select your rating: </p>
+                    <div class="star-rating" id="demo_star_rating">
+                        <input type="radio" id="5-stars-a2" name="rating2" value="5"/>
+                        <label for="5-stars-a2" class="star">&#9733;</label>
+                        <input type="radio" id="4-stars-a2" name="rating2" value="4"/>
+                        <label for="4-stars-a2" class="star">&#9733;</label>
+                        <input type="radio" id="3-stars-a2" name="rating2" value="3"/>
+                        <label for="3-stars-a2" class="star">&#9733;</label>
+                        <input type="radio" id="2-stars-a2" name="rating2" value="2"/>
+                        <label for="2-stars-a2" class="star">&#9733;</label>
+                        <input type="radio" id="1-star-a2" name="rating2" value="1"/>
+                        <label for="1-star-a2" class="star">&#9733;</label>
+                    </div>
+
+
+                    <textarea placeholder="Write your review  here" type="text_review_description" rows="5" cols="60"
+                              name="description"></textarea>
+                    </br>
+                    <p>*Note: Your name will be stored with this review.</p>
+                    <br/>
+
+
+                    <input type="submit" class="submit_btn" value="submit"/>
+                </form>
+
+                <!-- input in db -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-- Modal -->
+
+<div class="modal fade" id="modal-image" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Add Image</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- input in db -->
+
+                <form action="{% url 'post_restaurant_image' restaurant_id=restaurant_data.restaurant.restaurant_id%}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="image" required accept="image/*"/>
+
+                    <input type="submit" class="submit_btn" value="submit"/>
+                </form>
+
+                <!-- input in db -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+{% endblock %}

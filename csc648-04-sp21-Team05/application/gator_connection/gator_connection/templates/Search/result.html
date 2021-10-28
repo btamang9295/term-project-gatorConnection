@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+</head>
+
+<div class="result_box">
+    <center>
+
+        <h3><b class="note">NOTE: </b> This website is still in development. This search page and the search for users functionality is a proof of concept and will not be present in the final product. </h3>
+
+    </center>
+</div>
+
+
+<body style="background-color: lavender;">
+
+<center>
+    <div id="search-box">
+        <form role="search" id="search_form" action="{{search_url}}">
+            {% csrf_token %}
+            <input class="home_search_box" type="search" placeholder="Search for Users by Name or Email" name="search" required>
+            <select name="post_categories" class="filter-selectbox">
+                <option value="all">All</option>
+                <option value="sfsu_email">SFSU Email</option>
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+            </select>
+            <button class="home_search_button" type="submit" value="Search"><span class="ion-ios-search-strong">Search</span></button>
+        </form>
+    </div>
+
+</center>
+<br>
+{% if searched and student|length == 0 %}
+
+<center>
+    <h4 class="text-danger">No Results Found. Please try searching for something else.</h4>
+</center>
+
+{% elif student|length > 0 %}
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>SFSU Email</th>
+        <th>Relevancy Score</th>
+    </tr>
+    {% for stud in student %}
+
+    <tr>
+        <td>{{stud.first_name}}</td>
+        <td>{{stud.last_name}}</td>
+        <td>{{stud.sfsu_email}}</td>
+        <td>{{stud.score}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+
+
+</body>
+{% endblock %}

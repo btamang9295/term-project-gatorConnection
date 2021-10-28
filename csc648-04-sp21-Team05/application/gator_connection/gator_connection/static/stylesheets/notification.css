@@ -1,0 +1,319 @@
+.notification-request-container {
+  box-sizing: border-box;
+  display: flex;
+
+
+  flex-direction: row;
+}
+
+.notification-container {
+  box-sizing: border-box;
+  display: block;
+
+  width: 50%;
+  margin: 16px 0px;
+
+  border-right: 3px solid grey;
+}
+
+.title-container {
+    box-sizing: border-box;
+    display: block;
+    padding: 0px 32px;
+
+    width: 100%;
+}
+
+.title {
+    box-sizing: border-box;
+    display: block;
+
+
+    width: 100%;
+
+    
+
+    text-align: center;
+    font-size: 60px;
+
+    border-bottom: 3px solid grey;
+    color: white;
+}
+
+.notification-card {
+    margin: 24px;
+    padding: 16px;
+    
+    width: 80%;
+
+    box-sizing: border-box;
+    display: block;
+
+    border-radius: 16px;
+    text-decoration: none;
+    color: black;
+  
+  
+    box-shadow: 8px 8px 10px 2px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    
+    /* -webkit-transform: scale(1);
+         transform: scale(1);
+         -webkit-transition: .3s ease-in-out;
+         transition: .3s ease-in-out; */
+  
+  }
+  
+  .notification-card:hover {
+    text-decoration: none;
+    color: black;
+  
+    /* -webkit-transform: scale(1.05);
+        transform: scale(1.05); */
+  
+  }
+  
+  .notification-banner {
+    background-image: url('../pictures/check.jpg');
+    box-sizing: border-box;
+    height: 80px;
+    width: 10%;
+    object-fit: cover;
+    background-color: grey;
+  
+    background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+  
+  }
+  
+  .notification-banner-2 {
+    background-image: url('../pictures/request.jpg');
+    box-sizing: border-box;
+    height: 80px;
+    width: 10%;
+    object-fit: cover;
+    background-color: grey;
+  
+    background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+  
+  }
+  
+  
+  
+  .notification-description {
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    max-height: 150px;
+    width: 80%;
+    padding: 16px;
+  
+    font-size: 16px;
+
+    overflow: hidden;
+  
+    text-overflow: ellipsis;
+  }
+  
+  .sender-info {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+  
+    padding: 16px 8px 0px 8px;
+  
+    border-top: 1px solid grey;
+  }
+  
+  .sender-organization {
+    display: block;
+    flex-grow: 1;
+    font-size: 16px;
+  }
+  
+  
+  .notification-btn{
+    background-color: rgb(166, 128, 236);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    position: relative;
+    left: 35%;
+    display: inline;
+  }
+
+
+  .request-container {
+    box-sizing: border-box;
+    display: block;
+
+    width: 50%;
+    margin: 16px 0px;
+  }
+
+  .request-card {
+    margin: 24px;
+    padding: 16px;
+    
+    width: 80%;
+
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: column;
+
+    border-radius: 16px;
+    text-decoration: none;
+    color: black;
+  
+  
+    box-shadow: 8px 8px 10px 2px rgba(0, 0, 0, 0.2);
+    background-color: white;
+  }
+
+  .request-card:hover {
+    text-decoration: none;
+    color: black;
+  }
+
+  .request-title-container {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+  }
+
+  .request-title {
+    display: block;
+    font-size: 24px;
+    flex-grow: 1;
+  }
+
+  .request-date {
+    display: block;
+  }
+
+  .request-description-section {
+    box-sizing: border-box;
+    display: flex;
+
+    flex-direction: row;
+  }
+
+  .request-description {
+    box-sizing: border-box;
+
+    display: block;
+
+    flex-grow: 1;
+
+    width: 80%;
+    padding: 16px;
+  
+    font-size: 16px;
+
+    overflow: hidden;
+  
+    text-overflow: ellipsis;
+  }
+
+  .request-image {
+    box-sizing: border-box;
+
+    display: block;
+  }
+
+  .request-image img{
+    display: block;
+
+    height: auto;
+    width: 100%;
+
+    object-fit: contain;
+  }
+
+
+  .account-request-card .accept-buttons {
+    flex-grow: 1;
+
+    width: 100%;
+
+    justify-content: flex-end;
+    
+  }
+
+
+
+  .accept-buttons {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+  }
+
+  .btn {
+    margin: 8px;
+  }
+
+  .accept-btn, .reject-btn {
+    display: block;
+    padding: 8px;
+    width: 50px;
+  }
+
+  .accept-btn {
+    background-color: red;
+  }
+
+  .none-found {
+    box-sizing: border-box;
+    display: block;
+    padding: 8px;
+
+    width: 100%;
+
+    font-size: 24px;
+
+    text-align: center;
+  }
+
+
+  /* =================================================== */
+  /* Restaurant Request Card Specific CSS */
+  /* =================================================== */
+
+  .restaurant-request-card .request-description-section {
+    width: 100%;
+
+    margin: 8px 0px;
+  }
+
+
+  .restaurant-request-card img {
+    display: block;
+  }
+
+  .restaurant-request-card .request-right-column {
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+  .restaurant-request-card .request-description {
+    width: 100%;
+  }
+
+  .restaurant-request-card .accept-buttons {
+    justify-content: flex-end;
+  }
+

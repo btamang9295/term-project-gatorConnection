@@ -1,0 +1,36 @@
+input[type=text_contact]{
+    position: center;
+    width: 75%;
+    padding: 12px 20px;
+    margin: 12px 12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: rgb(239, 235, 240);
+}
+
+textarea[type=text_message_contact]{
+    resize: none;
+    width: 75%;
+    padding: 12px 12px;
+    margin: 12px 12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: rgb(239, 235, 240);
+  
+}
+
+.submit_btn{
+    background-color: #9081c5;
+      border-radius:5px;
+      border:3px solid #626263;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      padding:7px 18px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #9081c5;
+}

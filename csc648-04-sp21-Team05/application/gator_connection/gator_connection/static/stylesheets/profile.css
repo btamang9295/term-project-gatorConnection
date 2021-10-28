@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+
+    --primary-color: #121212;
+    --ternary-color: #292929;
+
+    --primary-text-color-high: rgba(255, 255, 255, 0.87);
+    --primary-text-color-medium: rgba(255, 255, 255, 0.60);
+    --primary-text-color-disabled: rgba(255, 255, 255, 0.38);
+}
+
+.container {
+    padding: calc(2 * var(--primary-padding-width));
+}
+
+.container-title {
+    font-size: 4rem;
+
+    color: var(--primary-text-color-high);
+
+    margin: calc(2 * var(--primary-padding-width));
+
+    border-bottom: 2px solid var(--primary-text-color);
+}
+
+.container-content {
+    display: grid;
+
+    padding: calc(2 * var(--primary-padding-width));
+
+    width: 100%;
+
+    gap: calc(4 * var(--primary-padding-width));
+
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+.column {
+    padding: calc(2 * var(--primary-padding-width));
+}
+
+.cardlist {
+
+    width: 100%;
+    box-shadow: 4px 4px 8px 2px rgba(0, 0, 0, 0.2);/* this adds the "card" effect */
+    text-align: center;
+    color: var(--primary-text-color-high);
+    background-color: var(--ternary-color);
+  }
+
+
+.cardlist img {
+    max-height: 250px;
+    width: 100%;
+
+    margin: auto;
+
+    object-fit: cover;
+}
+
+.card-info {
+    width: 100%;
+
+    padding:  var(--primary-padding-width);
+}
+
+.empty-search-container {
+    min-height: 20rem;
+    margin-top: 10rem;
+    padding: var(--primary-padding-width);
+}
+
+
+.empty-search {
+    width: 100%;
+
+    text-align: center;
+    font-size: 3rem;
+
+    color: var(--primary-text-color-medium);
+}

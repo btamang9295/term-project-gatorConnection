@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+
+
+{% block content %}
+<head>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/announcements.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+
+</head>
+<body>
+<img class="announcement-banner-1a">
+
+<div class="announcement-description-2a">
+    <h3 style = "color: white;"><b>SFSU men's Basketball recruiting. </b></h3></br>
+    <h5 style = "color: white;"> Deadline : August 3rd 2021 </h5> </br>
+    <p style = "color: white;">
+    San Francisco State University does offer athletic scholarships for Basketball.
+    Need-based and academic scholarships are available for student-athletes. Athletic scholarships are available for NCAA Division I, NCAA Division II, NAIA and NJCAA.
+    On average, 34% of all student-athletes receive athletic scholarships.
+
+    If you are interested in getting recruited by San Francisco State University Basketball,
+    you should get to know more about the school, what academic programs are offered,
+    and important members of the coaching staff - these are the people you need to connect with.
+    Getting familiar with the Basketball program is an important first step in the recruiting process.
+
+    How to get recruited by San Francisco State University Basketball
+    Most college Basketball coaches don’t respond to unsolicited emails.
+    It’s important you build a relationship with the coaching staff.
+    This is one of the ways SportsRecruits can help.
+    You can certainly start by filling out the San Francisco State University Basketball’s
+    recruiting questionnaire and getting on their list, but that’s only the start.
+    To get actively recruited, a college coach needs to see you compete,
+    which is why it’s important to have an online athletic recruiting profile.
+    High school student-athletes have a discoverability problem.
+    And discoverability is the key to college exposure and recruitment.
+    Just having a recruiting profile doesn’t guarantee you will get recruited.
+    You need your profile to showcase all of your academic and athletic achievements,
+    and be able to instantly connect to college coaches who are interested.
+    If you can’t quickly find and message any college coach you want,
+    then you’re not solving your biggest problem in getting recruited for Basketball.
+    The Head Coach of San Francisco State University Basketball is Vince Inglima - make
+    it as easy as possible for them to learn about you as an athlete,
+    and be able to start a conversation with you.
+    100% of college coaches and programs are on the SportsRecruits platform.
+    If you are interested in getting recruited by San Francisco State University’s Basketball program
+    </p>
+</div>
+<div class="admin-info">
+    <p class="admin-organization" style = "color: white;">SFSU Athletic Department. 16th April 2021</p>
+    <p class="admin-user" style = "color: white;"> Benjamin Kao, Coach </p>
+
+</div>
+
+
+</a>
+
+
+<!-- Modal for Editing the housing List  -->
+<div class="modal fade" id="modal-editAnnouncement" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Edit your Listing</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- input in db -->
+
+
+                <form action="{% url 'housing_listing' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p>Title:</p>
+                    <input type="text_modal_announcement_post" placeholder="Enter Title for announcement" name="title" required/>
+
+                    <p> Description: </p>
+                    <textarea placeholder="Details of Announcement" type="text_announcement_description" rows="5" cols="60"
+                              name="description"></textarea>
+                    </br> </br>
+
+
+                    <p class="p-inline">Upload Images</p>
+                    <input type="file" id="myFile" name="image_path">
+                    </br></br>
+
+
+                    <input type="submit" class="submit_btn" value="submit"/>
+                </form>
+
+                <!-- input in db -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-deleteAnnouncement" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Delete this Listing</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+                <h3>
+                    Are you sure you want to Delete this Announcement ?
+                </h3>
+                <!-- input in db -->
+
+                <form action="{% url 'housing_listing' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="delete_btn" class="btn btn-default">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+</body>
+
+
+{% endblock %}

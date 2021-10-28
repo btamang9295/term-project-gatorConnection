@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+<h1>
+    <mark>Shop</mark>
+</h1>
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/contact.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <script src="../../static/scripts/contact.js"></script>
+</head>
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+<center>
+    <h1 style = "color: white;"> Have a Question or Issue? Fill out your information and we will get back to you as soon as we can!</h1>
+    <form action="contact-us" method="POST">
+        {% csrf_token %}
+
+        <input type="text_contact" placeholder="Enter First Name" name="first_name"  required/><br/>
+        <input type="text_contact" placeholder="Enter Last Name" name="last_name"  required/><br/>
+        <p id="email_message"></p>
+        <input type="text_contact" placeholder="Enter Email" name="email" id="email" required onkeyup="validate_email();"/><br/>
+        <p id="description-message"></p></br>
+        <textarea placeholder="How can we help you?" type="text_message_contact" rows="5" cols="60" name="description" id="description" required onkeyup="validate_description();"></textarea>
+
+
+        <br><br>
+
+
+        <input type="submit" class="submit_btn" value="submit"/>
+    </form>
+
+</center>
+
+{% endblock %}

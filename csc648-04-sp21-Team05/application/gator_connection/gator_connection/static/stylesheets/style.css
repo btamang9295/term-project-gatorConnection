@@ -1,0 +1,218 @@
+
+/*General browser reset style*/
+* {
+  /* Main Body Colors */
+  --primary-inverse-color: white;
+  --secondary-color: #99aeff;
+
+  /* Font/Text Styling/Colors */
+  --font-family: sans-serif;
+  --primary-text-color: white;
+  --secondary-text-color: rgb(51, 51, 51);
+  --ternary-text-color: black;
+
+
+  --primary-padding-width: 8px;
+
+  /* Main Image Gradient */
+  --main-image-background-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+
+
+  --primary-color: #121212;
+  --ternary-color: #292929;
+
+  --ternary-color-active: #353535;
+  --ternary-color-outline: #232323;
+
+  --primary-text-color-high: rgba(255, 255, 255, 0.87);
+  --primary-text-color-medium: rgba(255, 255, 255, 0.60);
+  --primary-text-color-disabled: rgba(255, 255, 255, 0.38);
+
+  margin: 0px;
+  padding: 0px;
+}
+
+@font-face {
+  font-family: heading;
+  src: url('../pictures/heading.ttf');
+  font-weight: bold;
+}
+
+
+body {
+  /* take off comments if we want to disable side scrolling */
+  /* overflow-x: hidden; */
+  display: block;
+  box-sizing: border-box;
+  background-color: var(--primary-color);
+  max-height: 100vh;
+  max-width: 100vw;
+  height: 100%;
+}
+
+.page-content {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+#footer {
+  position: relative;
+
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  padding-left: 30px;
+
+  color: lightgray;
+  background-color: #222;
+}
+
+footer p { 
+  margin: 16px;
+}
+
+.footer-link {
+  margin: 16px;
+  text-decoration: none;
+  color: lightgray;
+}
+
+.footer-link:hover {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+.nav-item {
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  color: white;
+}
+
+.nav-item.active {
+  background-color: #4A217B;
+  color: black;
+}
+
+.nav-link{
+  color: lightgray;
+  background-color: transparent !important;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+ 
+.navbar-brand {
+    color: lightgray;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+  }
+
+
+ 
+
+
+.navbar-brand img {
+    height: 100%;
+    margin-right: 20px;
+  }
+ 
+
+
+.navbar {
+  border-radius: 0px;
+  background-color: #222;
+}
+
+.navbar-expand-lg {
+  padding: 0px;
+  margin: 0px;
+}
+
+.navbar-expand-lg .navbar-brand {
+   display: flex;
+   align-items: center;
+   padding: 5px;
+ }
+
+ .navbar-brand img {
+   height: 100%;
+   margin-right: 20px;
+ }
+
+ .navbar-inverse {
+  margin: 0px;
+  border-radius: 0px;
+  width: 100%;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  /* Handles the navbar hovering, for the box and the text */
+  background-color: transparent ;
+  color: lightgray;
+  text-decoration: none;
+}
+
+.navbar-brand:hover, 
+.navbar-brand:focus {
+  background-color: transparent;
+  color: white ;
+}
+
+.notification-bell-container {
+  box-sizing: border-box;
+  display: flex;
+
+  flex-direction: row;
+  margin: 0;
+  height: 100%;
+}
+
+#notification-indicator {
+  display: block;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background-color: red;
+}
+
+
+
+
+/* below dropdowns handles logic for the dropdown menu, so when hover nothing shows up, since it is transparent   */
+  
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color:transparent;
+  color: lightgray;
+}
+
+#page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  min-height: 100vh;
+}
+
+
+      
+

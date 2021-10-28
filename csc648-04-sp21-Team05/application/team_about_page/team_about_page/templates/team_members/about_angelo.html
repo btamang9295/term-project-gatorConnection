@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+</head>
+
+<body>
+    <A HREF="{% url 'team_members_angelo' %}">About Angelo</A> <br>
+    <A HREF="{% url 'about' %}">back to main</A>
+    <p>Hi, I'm Angelo. I am a senior at SFSU studying CS!</p>
+
+
+    <img src="{% static 'img/angelo.png' %}">
+
+
+    <!-- input in db -->
+    <hr />
+    <form action="{% url 'link_request_angelo' %}" method="POST">
+        {% csrf_token %}
+        User Name: <input type="text" placeholder="enter employee name" name="username" required /><br />
+        Email: <input type="text" placeholder="enter email id" name="email" required /><br />
+        <input type="submit" value="Insert Record" />
+        <A HREF="{% url 'about' %}">back to main</A>
+    </form>
+    <hr />
+
+</body>
+
+</html>

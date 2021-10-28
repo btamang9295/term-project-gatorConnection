@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/profile.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+</head>
+
+
+<div id="housing-listings-container" class="container">
+    <div id="housing-listings-container-title" class="container-title">Your Housing Listings</div>
+    
+    <div class="container-content">
+    {% if housing_listings|length > 0 %}
+    {% for housing in housing_listings %}
+        {% url 'housing_detail' housing_id=housing.housing.housing_id as housing_detail %}
+
+        <div class="cardlist">
+            <p><a href="{{ housing_detail }}"><img id="post_image" src="media/{{housing.images.0.image_path}}"onerror="imgError(this);"></a></p>
+            <div class="card-info">
+                <h4>{{housing.post.title}}</h4>
+                <p> Price: ${{housing.housing.price}} per month</p>
+                <p> Address: {{housing.housing.address.number}} {{housing.housing.address.street}} {{housing.housing.address.city}} {{housing.housing.address.state}} {{housing.housing.address.zipcode}}</p>
+            </div>
+            
+        </div>
+
+    {% endfor %}
+    {% else %}
+    <div class="empty-search-container">
+        <div class="empty-search">No Housing Listings Found</div>
+    </div>
+    {% endif %}
+
+    </div>
+
+</div>
+<div id="item-listings-container" class="container">
+    <div id="item-listings-container-title" class="container-title">Your Item Listings</div>
+    {% if item_listings|length > 0 %}
+    <div class="container-content">
+        
+        {% for item in item_listings %}
+            {% url 'housing_detail' housing_id=housing.housing.housing_id as housing_detail %}
+
+            <div class="cardlist">
+                <p><a href="item/{{item.item.item_id}}"><img id="post_item_listing_image" src="media/{{item.images.0.image_path}}" onerror="imgError(this);" style="float: center; padding-right:10px" width="300" height="180"></a></p>
+                <div class="card-info">
+                    <h4>{{item.post.title}}</h4>
+                    <p> Price: ${{item.item.price}}</p>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-search-container">
+        <div class="empty-search">No Item Listings Found</div>
+    </div>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

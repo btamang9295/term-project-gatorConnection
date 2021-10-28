@@ -1,0 +1,20 @@
+<div id="mission-statement">
+    <h1 id="mission-statement-title">A One Stop for All your Gator Needs.</h1>
+    <p id="mission-statement-body">
+        A site exclusive for SFSU students where they can find <a href={{housing_url}}>housings </a> near campus, <a
+            href={{item_url}}>used school supplies </a>, <a href={{restaurants_url}}>restaurants</a>, or
+        see<a href={{announcements_url}}> University announcements </a></p>
+    </p>
+
+    {% if not request.session.is_loggedin %}
+    <center>
+        <p id="mission-statement-register">Don't have an account? Click <a href="#modal-2" data-toggle="modal"
+                                                                           data-dismiss="modal">here</a> to sign up.
+    </center>
+    {%endif%}
+</div>
+</center>
+
+<p id="parallax-credit">&copy; 关博华 (Guānbóhuá) Bobo </p>
+
+</div>

@@ -1,0 +1,15 @@
+#terms-and-conditions, #privacy-policy {
+    font-family: heading;
+    padding: 24px;
+    border-bottom: 2px solid gray;
+}
+
+.page-content{
+    color: white;
+}
+@font-face {
+    font-family: heading;
+    src: url('../pictures/heading.ttf');
+    font-weight: bold;
+  }
+  

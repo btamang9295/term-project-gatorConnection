@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+<h1>
+    <mark>Shop</mark>
+</h1>
+
+{% url 'housing' as housing_url %}
+{% block content %}
+
+<head>
+
+    <script src="../../static/scripts/housing&item.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/housing.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+{% if messages %}
+{% for message in messages %}
+<div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="housing_home_background">
+
+    <div class="topleft">
+        <div class="housing-home-title">welcome to housing</div>
+        <div class="housing-home-mission-statement">Find housing options near SF State posted by SF State students.</div>
+    </div>
+    <div class="search-container">
+        <form role="search" id="housing_search_form" action="{% url 'housing' %}">
+
+            {% csrf_token %}
+            <select id="select_option" name="post_categories" class="filter-selectbox">
+                <option value="all" {% if search_category == 'all' %}selected{% endif %}>All</option>
+                <option value="title" {% if search_category == 'title' %}selected{% endif %}>Title</option>
+                <option value="location" {% if search_category == 'location' %}selected{% endif %}>Location</option>
+                <option value="pricing" {% if search_category == 'pricing' %}selected{% endif %}>Pricing</option>
+                <option value="preferred_payment" {% if search_category == 'preferred_payment' %}selected{% endif %}>Preferred Payment</option>
+            </select>
+            <input class="housing_search_box" type="search" placeholder="Search for housing near SFSU" name="search" {% if search_query %} value="{{search_query}} {% endif %}"/>
+
+            <button class="housing_search_button" type="submit" value="Search"><span
+                    class="ion-ios-search-strong">Search</span></button>
+        </form>
+    </div>
+</div>
+<p></p>
+
+<!-- Button trigger modal -->
+
+<center>
+
+{% if request.session.reg_user_id == null %}
+<div style="color: white;">Please log in to create a housing listing.</div>
+{%elif not request.session.reg_user_id == null and request.session.email_verified == False%}
+<div style="color: white;">Please check your sfsu email to verify your account to create a housing listing.</div>
+{%elif not request.session.reg_user_id == null%}
+
+  <div class="wrapper" data-toggle="modal" data-target="#modal-housing">
+    <div class="cta" >
+      <span>+ Post an Advertisement</span>
+      <span>
+        <svg width="66px" height="30px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+            <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+            <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z"
+                  fill="#FFFFFF"></path>
+          </g>
+        </svg>
+      </span>
+        </div>
+    </div>
+  </div>
+  {%endif%}
+</center>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-housing" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Post a Listing</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- input in db -->
+
+                <form action="{% url 'housing_listing' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p>Title:</p></br>
+                    <p id="title-message"></p>
+
+                    <input type="text_modal_housing_post" placeholder="Enter Title for housing" name="title" id="title"
+                           required onkeyup="validate_title();"/>
+
+
+                    <p>Pricing (Format ex: 12.00): $ </p></br>
+                    <p id="pricing-message"></p>
+
+                    <input pattern='^\d+(?:\.\d{0,2})$' type="text_modal_housing_post" input onkeypress='validate(event)' placeholder="Enter price"
+                           name="price" id="pricing" required onkeyup="validate_pricing();" />
+
+
+                    <p>Zip Code:</p>
+                    <input class="p-inline-text-box" type="text_modal_housing_zip_number" placeholder="Enter Zip code"
+                           name="zipcode" id="zip-code" required onkeyup="validate_zip_code();"/>
+                    <p id="zip-message"></p>
+
+
+                    <p>Number:</p>
+                    <input type="text_modal_housing_zip_number" placeholder="Enter Number" name="number"
+                           id="number" required onkeyup="validate_number();"/>
+                    <p id="number-message"></p>
+
+
+                    <p>Street:</p></br>
+                    <p id="street-message"></p>
+                    <input type="text_modal_housing_post" placeholder="Enter Street" name="street" id="street"
+                           required onkeyup="validate_street();"/>
+
+                    <p>City:</p></br>
+                    <p id="city-message"></p>
+                    <input type="text_modal_housing_post" placeholder="Enter city" name="city" id="city"
+                           required onkeyup="validate_city();"/>
+
+                    <p> Description: </p></br>
+                    <p id="description-message"></p>
+                    <textarea placeholder="Enter Description of Housing here" type="text_housing_description" rows="5" cols="60"
+                              name="description" id="description" required onkeyup="validate_description();"></textarea>
+                    </br> </br>
+
+
+                    <p class="p-inline">Preferred Method of Payment</p>
+
+                    <select name="preferred_payment" id="payment_type">
+
+                        <option value="Venmo">Venmo</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Check">Check</option>
+                    </select>
+                    </br></br>
+
+
+                    <p class="p-inline">Pets Allowed</p>
+
+                    <label class="check-container"> yes
+                        <input type="radio" name="pets_allowed" id="yes-pets" class="pets_allowed"
+                               onclick="document.getElementById('no-pets').checked = false" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <! -- both radio button should have same name in order to allow only one to be checked -->
+                    <! -- Added a class to these radios in order to work with back-end -->
+                    <label class="check-container"> no
+                        <input type="radio" name="no_pets_allowed" id="no-pets" class="pets_allowed"
+                               onclick="document.getElementById('yes-pets').checked = false">
+
+                        <span class="checkmark"></span>
+                    </label>
+                    </br></br>
+
+                    <p class="p-inline">Upload Images</p>
+                    <input type="file" id="myFile" name="image_path" accept="image/*" required>
+                    </br></br>
+
+
+                    <input type="submit" id="submit-btn" class="submit_btn" value="submit"/>
+                </form>
+
+                <!-- input in db -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+<!-- Load Font Awesome Icon Library -->
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+
+<div class="container-content">
+    {% if housing_data|length > 0 %}
+    {% for housing in housing_data %}
+        {% url 'housing_detail' housing_id=housing.housing.housing_id as housing_detail %}
+
+        <div class="cardlist">
+            <p><a href="{{ housing_detail }}"><img id="post_image" src="media/{{housing.images.0.image_path}}"
+                                                   onerror="imgError(this);"></a></p>
+            <div class="card-info">
+              <h4>{{housing.post.title}}</h4>
+              <p> Price: ${{housing.housing.price}} per month</p>
+              <p> Address: {{housing.housing.address.number}} {{housing.housing.address.street}} {{housing.housing.address.city}} {{housing.housing.address.state}} {{housing.housing.address.zipcode}}</p>
+            </div>
+          </div>
+    {% endfor %}
+    {% else %}
+    <div class="empty-search-container">
+        <div class="empty-search">No Housing Listings Found</div>
+    </div>
+    {% endif %}
+</div>
+
+
+<script>
+
+  function imgError(image) {
+
+    image.onerror = "";
+
+    /* below does not work
+    image.src = "image_placeholders/house_placeholder.jpg";
+    */
+
+    /* works if placeholder image is in media folder
+    image.src = "media/house_placeholder.jpg";
+    */
+    // below works through reference of static
+    image.src = "{% static 'pictures/image_placeholders/house_placeholder.jpg' %}";
+
+    return true;
+
+  }
+
+  function validate(evt) {
+    var theEvent = evt || window.event;
+
+    // Handle paste
+    if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+    } else {
+      // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+    }
+    var regex = /[0-9]|\./;
+    if (!regex.test(key)) {
+      theEvent.returnValue = false;
+
+      if (theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
+
+</script>
+
+
+{% endblock %}

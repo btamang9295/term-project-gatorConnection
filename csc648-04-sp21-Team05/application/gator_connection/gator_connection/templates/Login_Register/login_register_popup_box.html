@@ -1,0 +1,237 @@
+{% load static %}
+{% url 'terms_and_conditions' as terms_and_conditions_url %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/login_register.css' %}">
+    <script src="../../static/scripts/login_register.js"></script>
+</head>
+
+
+<div class="modal fade" id="modal-1">
+    <div class="modal-dialog" style="width:400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Login</h4>
+                </center>
+            </div>
+
+            <div class="modal-body-login">
+
+                <!-- input in db -->
+                <div class="tab-bar">
+                    <button class="tab-btn tab-login-btn active"
+                            onclick="openLoginForm(event, 'student-login-form')">Student
+                    </button>
+                    <button class="tab-btn tab-login-btn"
+                            onclick="openLoginForm(event, 'admin-login-form')">Admin
+                    </button>
+                    <button class="tab-btn tab-login-btn" onclick="openLoginForm(event, 'super-user-login-form')">Super
+                        User
+                    </button>
+
+                </div>
+                <div id="student-login-form" class="tab-content login-form-content active">
+                    <form action="{% url 'login_student' %}" method="POST">
+                        {% csrf_token %}
+
+                        <input type="text_login_register" placeholder="SFSU Email" name="sfsu_email" id="student_email_login" oninput="validate_student_email_login()" required/><br/>
+                        <p id="student_email_login_message"></p>
+                        <input type="password" placeholder="Password" name="password" id="student_password_login" oninput="validate_student_password_login()" required/><br/>
+                        <p id="student_password_login_message"></p>
+
+                        <a href="{{contact_url}}">Forgot my Password</a></br></br>
+
+                        <input type="submit" class="login_register" value="Login" id="student_login_button" disabled/>
+                    </form>
+                </div>
+                <div id="admin-login-form" class="tab-content login-form-content">
+                    <form action="{% url 'login_admin' %}" method="POST">
+                        {% csrf_token %}
+
+                        <select name="admin_type" class="filter-selectbox">
+                            <option value="Athletics">Athletics</option>
+                            <option value="Department">Department</option>
+                            <option value="Organization">Organization</option>
+                        </select>
+
+                        <input type="text_login_register" placeholder="Email" name="email" id="admin_email_login" oninput="validate_admin_email_login()" required/><br/>
+                        <p id="admin_email_login_message"></p>
+                        <input type="password" placeholder="Password" name="password" id="admin_password_login" oninput="validate_admin_password_login()" required/><br/>
+                        <p id="admin_password_login_message"></p>
+                        <a href="{{contact_url}}">Forgot my Password</a></br></br>
+                        <input type="submit" class="login_register" value="Login" id="admin_login_button" disabled/>
+                    </form>
+                </div>
+                <div id="super-user-login-form" class="tab-content login-form-content">
+                    <form action="{% url 'login_super_user' %}" method="POST">
+                        {% csrf_token %}
+
+                        <input type="text_login_register" placeholder="Email" name="email" id="super_user_email_login" oninput="validate_super_user_email_login()" required/><br/>
+                        <p id="super_user_email_login_message"></p>
+                        <input type="password" placeholder="Password" name="password" id="super_user_password_login" oninput="validate_super_user_password_login()" required/><br/>
+                        <p id="super_user_password_login_message"></p>
+                        <a href="{{contact_url}}">Forgot my Password</a></br></br>
+                        <input type="submit" class="login_register" id="super_user_login_button" value="Login" disabled/>
+                    </form>
+                </div>
+
+                <!-- input in db -->
+                <center>
+                    <a href="#modal-2" data-toggle="modal" data-dismiss="modal">Don't have an account? Click here to
+                        create one.</a>
+                </center>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- #modal 2 -->
+<div class="modal fade" id="modal-2">
+    <div class="modal-dialog" style="width:400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+
+                <center>
+                    <h4 class="modal-title">Register</h4>
+                </center>
+
+            </div>
+
+            <div class="modal-body-register">
+
+                <!-- input in db -->
+                <div class="tab-bar">
+                    <button class="tab-btn tab-register-btn active"
+                            onclick="openRegisterForm(event, 'student-register-form')">Student
+                    </button>
+                    <button class="tab-btn tab-register-btn"
+                            onclick="openRegisterForm(event, 'admin-register-form')">Admin
+                    </button>
+                    <button class="tab-btn tab-register-btn"
+                            onclick="openRegisterForm(event, 'super-user-register-form')">Super User
+                    </button>
+
+                </div>
+
+                <div id="student-register-form" class="tab-content register-form-content active">
+                    <form action="{% url 'student_registration' %}" method="POST">
+                        <center>
+
+                            <p>By registering, you agree to Gator Connection's
+                                <a href={{terms_and_conditions_url}} target="_blank">Terms and conditions.</a>
+                            </p>
+
+                        </center>
+                        {% csrf_token %}
+
+                        <input type="text_login_register" placeholder="First Name" name="first_name" required/><br/>
+
+                        <input type="text_login_register" placeholder="Last Name" name="last_name" required/><br/>
+
+                        <input type="text_login_register" placeholder="SFSU Email" name="email" id="sfsu-email" oninput="validate_sfsu_email()" required/><br/>
+                        <p id="student_email_message"></p>
+
+                        <p class="a">Graduation Date: <input type="date" name="graduation_date" oninput="validate_graduation_date()" id="graduation-date" 
+                            min="2021-06-01" max="2024-06-01" required/><br/></p>
+                        <p id="student_graduation_date_message"></p>
+
+                        <input type="password" placeholder="Password" name="password" id="student_password" oninput="validate_student_fields()" required/><br/>
+                        <p id="student_password_message"></p>
+
+                        <p id="student_register_message"></p>
+                        <input type="submit" id="student_register_button" class="login_register" value="Register" disabled/>
+
+
+                    </form>
+                </div>
+                <div id="admin-register-form" class="tab-content register-form-content">
+                    <form action="{% url 'admin_registration' %}" method="POST">
+                        <center>
+
+                            <p>By registering, you agree to Gator Connection's
+                                <a href={{terms_and_conditions_url}} target="_blank">Terms and conditions.</a>
+                            </p>
+                        </center>
+
+                        <select name="admin_type" id="admin_type" class="filter-selectbox" onchange="updateAdminRegisterForm()">
+                            <option value="Athletics">Athletics</option>
+                            <option value="Department">Department</option>
+                            <option value="Organization">Organization</option>
+                        </select>
+
+
+                        {% csrf_token %}
+
+                        <input type="text_login_register" placeholder="First Name" name="first_name" required/><br/>
+
+                        <input type="text_login_register" placeholder="Last Name" name="last_name" required/><br/>
+
+                        <input type="text_login_register" placeholder="Email" name="email" id="admin-email" oninput="validate_admin_email()" required/><br/>
+                        <p id="admin_email_message"></p>
+
+                        <input id="organization" type="text_login_register" placeholder="Sport" name="organization" oninput="validate_admin_type()" required/><br/>
+                        <p id="admin_type_message"></p>
+                        <input type="text_login_register" placeholder="Position" id="admin-position" name="admin_position" oninput="validate_admin_position()"/><br/>
+                        <p id="admin_position_message"></p>
+                        <input type="password" placeholder="Password" name="password" id="admin_password" oninput="validate_admin_fields()" required/><br/>
+                        <p id="admin_password_message"></p>
+
+                        <input type="submit" class="login_register" id="admin_register_button" value="Register" disabled/>
+
+
+                    </form>
+                </div>
+                <div id="super-user-register-form" class="tab-content register-form-content">
+                    <form action="{% url 'super_user_registration' %}" method="POST">
+                        <center>
+
+                            <p>By registering, you agree to Gator Connection's
+                                <a href={{terms_and_conditions_url}} target="_blank">Terms and conditions.</a>
+                            </p>
+
+                        </center>
+                        {% csrf_token %}
+
+                        <input type="text_login_register" placeholder="First Name" name="first_name" required/><br/>
+
+                        <input type="text_login_register" placeholder="Last Name" name="last_name" required/><br/>
+
+                        <input type="text_login_register" placeholder="Email" name="email" id="super-user-email" oninput="validate_super_user_email()" required/><br/>
+                        <p id="super_user_email_message"></p>
+
+                        <input type="password" placeholder="Password" name="password" id="super_user_password" oninput="validate_super_user_fields()" required/><br/>
+                        <p id="super_user_password_message"></p>
+
+                        <input type="submit" class="login_register" id="super_user_register_button" value="Register" disabled/>
+
+
+                    </form>
+                </div>
+
+                <!-- input in db -->
+                <center>
+                    <a href="#modal-1" data-toggle="modal" data-dismiss="modal">Already have an account? Click here to
+                        sign in.</a>
+                </center>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

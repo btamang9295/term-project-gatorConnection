@@ -1,0 +1,823 @@
+
+/*General browser reset style, also code that alec added*/
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  body {
+      overflow-x: hidden !important;
+      /* below is css that alec added*/
+      box-sizing: border-box;
+      background-color: lavender;
+      max-height: 100vh;
+      max-width: 100vw;
+      height: 100%;
+      /* stops here*/
+  }
+
+
+
+#item_search_form{
+  width: 100%;
+  text-align: center;
+}
+
+.empty-search-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 25vh;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  font-size: 36px;
+}
+
+.empty-search {
+box-sizing: border-box;
+display: block;
+height: 50%;
+width: 50%;
+
+}
+
+#select_option{
+    padding: 11px 6px;
+    margin: 8px 0px;
+
+    /* uncomment these to push the post an advertisement lower */
+    margin-bottom: 7.5%;
+  
+
+    display: inline-block;
+}
+
+
+.item_search_box{
+    box-sizing: border-box;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+
+}
+.item_search_button{
+    padding: 11px 15px;
+    margin: 8px 0px;
+
+    /* uncomment these to push the post an advertisement lower
+    margin-bottom: 7.5%;
+    */
+
+    display: inline-block;
+}
+
+.k{
+    box-sizing: border-box;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    position:sticky;
+  }
+ 
+  .items_home_background{
+    /* The image used */
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-around;
+
+    align-items: center;
+
+    background-image: url('../pictures/try.jpg');
+  
+    /* Set a specific height */
+    min-height: 600px; 
+    max-width: 100%;
+  
+    /* Create the parallax scrolling effect */
+    /* background-attachment: fixed; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    
+  }
+  
+
+.create-item-listing-button{
+
+width: 30%;
+position: static;
+position: sticky;
+  background-color: rgb(131, 6, 131);
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+}
+
+/* css for button on item detail page , 2 options bw edit, or interested*/
+.btn-interested-edit{
+
+background-color: #525252bd;
+width: 30%;
+position: static;
+position: sticky;
+left: 35%;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+}
+
+/* Edit your Listing button */
+.btn-editLisiting{
+  background-color: #525252bd;
+width: 30%;
+position: static;
+position: sticky;
+left: 35%;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* Delete your listing button */
+.btn-deleteLisiting {
+  background-color: #525252bd;
+width: 30%;
+position: static;
+position: sticky;
+left: 35%;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.carousel-inner {
+  margin-top: -17px;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+  }
+
+.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 20%;
+}
+.carousel-indicators {
+    bottom: -100px;
+}
+
+#carousel-example-generic{
+  position: relative;
+  left:12%;
+  width: 75%;
+}
+
+  .item {
+    position: absolute;
+    top: 0px;
+
+    margin: 0px;
+    padding: 0px;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  .card {
+       background-color: green;
+       color: yellow;
+       width: 100%;
+       height: 100%;
+   }
+
+  div.card-body {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+  }
+
+   #card1
+  {
+   background-image: url('../pictures/item_img/potein1.jpg');
+   min-height: 500px;
+   min-width: 800px;
+
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: contain;
+  }
+
+  #card2
+  {
+    background-image: url('../pictures/item_img/potein2.jpg');
+    min-height: 500px;
+    min-width: 800px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+ }
+
+  #card3
+  {
+    background-image: url('../pictures/item_img/potein1.jpg');
+    min-height: 500px;
+    min-width: 800px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  #card4
+  {
+    background-image: url('../pictures/item_img/potein2.jpg');
+    min-height: 500px;
+    min-width: 800px;
+
+    /* Create the parallax scrolling effect */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+  }
+
+  #list-1{
+    min-width:100px ;
+    min-height: 75px;
+    background-image: url('../pictures/item_img/potein1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+  }
+
+
+  #list-2{
+    background-image: url('../pictures/item_img/potein2.jpg');
+    min-width:100px ;
+    min-height: 75px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+  }
+  #list-3{
+    min-width:100px ;
+    min-height: 75px;
+    background-image: url('../pictures/item_img/potein1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#list-4{
+    min-width:100px ;
+    min-height: 75px;
+    background-image: url('../pictures/item_img/potein2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+#description-box{
+  padding-top: 100px;
+  position: center;
+  text-align: center;
+  font-family: monospace;
+}
+  .intrested_btn{
+    background-color: #525252bd;
+    width: 30%;
+    position: static;
+    position: sticky;
+    left: 35%;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 4px 2px;
+      cursor: pointer;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin:  10px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+ padding: 10px;
+}
+
+
+  .button_list_grid {
+    border: none;
+   
+    outline: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  
+  .btn:hover {
+    background-color: #ddd;
+  }
+  
+  .btn.active {
+    background-color: #666;
+    color: white;
+  }
+  
+.button1
+{width: 100px;}
+
+#container{
+  text-align: left;
+}
+
+.close{
+  font-weight:bolder;
+  /*font-size: 40px;*/
+  color: black;
+}
+
+input[type=text_modal_item_post]{
+  position: center;
+  width: 95%;
+  padding: 12px 20px;
+  margin: 12px 12px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: rgb(239, 235, 240);
+}
+
+textarea[type=text_item_description]{
+  resize: none;
+  width: 95%;
+  padding: 12px 12px;
+  margin: 12px 12px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: rgb(239, 235, 240);
+
+}
+
+input[type=text_modal_item_request]{
+  width: 50%;
+  padding: 12px 12px;
+  margin: 8px 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.modal-title{
+padding: 13px 8px;
+margin: 0px 0px;
+margin-top: 0px;
+
+}
+
+
+.modal-body{
+  padding-left: 8px;
+}
+
+/* All text inside the modals */
+.modal-body p{
+  font-size: 17px;
+padding-left: 13px;
+margin-bottom: -15px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.modal-footer #delete_btn{
+  position: relative;
+  right: 70%;
+}
+
+/* Item post delete promt text*/
+.modal-body h3{
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.p-inline{
+  display: inline;
+}
+
+/*payment type select css */
+#payment_type {
+  position: relative;
+  left:5%;
+  background-color:#9081c5;
+	border-radius:5px;
+	border:3px solid#626263;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:7px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px#9081c5;
+}
+
+/* upload button CSS */
+
+#myFile{
+  color: #9081c5;
+  display: inline;
+  border: solid white;
+}
+
+/*submit btn */
+.submit_btn{
+  position: relative;
+  left: 80%;
+  background-color: #9081c5;
+	border-radius:5px;
+	border:3px solid #626263;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:7px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #9081c5;
+}
+
+#submit-request-btn {
+    left: 0;
+}
+
+
+/* everything below here is css that alec added for the navbar and footer    */
+footer {
+  position: relative;
+
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  padding-left: 30px;
+
+  color: white;
+  background-color: #222;
+}
+
+footer p {
+  margin: 16px;
+}
+
+.footer-link {
+  margin: 16px;
+  text-decoration: none;
+  color: white;
+}
+
+.footer-link:hover {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+#page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  min-height: 100vh;
+}
+
+.navbar-inverse {
+  margin: 0px;
+  border-radius: 0px;
+  width: 100%;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.navbar-default {
+  padding: 0px;
+  margin: 0px;
+}
+
+.navbar-default .navbar-brand {
+   display: flex;
+   align-items: center;
+   padding: 5px;
+ }
+
+ .navbar-brand img {
+   height: 100%;
+   margin-right: 20px;
+ }
+
+.sticky{
+    width: 30%;
+    position: relative;
+    margin: auto;
+    background-color: #9081c5;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.topleft {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  flex-grow: 3;
+
+  font-family: heading;
+  color:rgba(0, 0, 0, 0.678);
+}
+
+.search-container {
+  display: block;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.items-home-title {
+  font-size: 100px;
+}
+
+.items-home-mission-statement {
+  font-size: 28px;
+  padding-left: 2.5%;
+}
+
+
+@font-face {
+  font-family: heading;
+  src: url('../pictures/heading.ttf');
+  font-weight: bold;
+}
+
+
+.wrapper {
+  display: flex;
+  width: 375px;
+  justify-content: center;
+
+  margin: calc(5 * var(--primary-padding-width))
+}
+
+/* Checkmark CSS*/
+                              /*  check-box css*/
+.check-container {
+	display:inline-block;
+  position: relative;
+  padding-left: 35px;
+  left: 5%;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.check-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.check-container input:checked ~ .checkmark {
+  background-color: #9081c5;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.check-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.check-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+.cta {
+  display: flex;
+  padding: 10px 45px;
+  width: 375px;
+  text-decoration: none;
+  font-family: Avenir, sans-serif;
+  font-size: 20px;
+  color: white;
+  background: #9081c5;
+  transition: 0.6s;
+  box-shadow: 6px 6px 0 black;
+  transform: skewX(-15deg);
+  cursor: pointer;
+}
+
+.cta:focus {
+  outline: none; 
+}
+
+.cta:hover {
+   transition: 0.5s;
+   box-shadow: 10px 10px 0 #FBC638;
+}
+
+
+
+.container-content {
+  display: grid;
+
+  padding: calc(2 * var(--primary-padding-width));
+
+  width: 100%;
+
+  gap: calc(4 * var(--primary-padding-width));
+
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+.cardlist {
+  width: 100%;
+  box-shadow: 4px 4px 8px 2px rgba(0, 0, 0, 0.2);/* this adds the "card" effect */
+  text-align: center;
+  color: var(--primary-text-color-high);
+  background-color: var(--ternary-color);
+}
+
+.cardlist img {
+  max-height: 300px;
+  height: 250px;
+  width: 100%;
+
+  margin: auto;
+
+  object-fit: cover;
+}
+
+.card-info {
+  width: 100%;
+  padding:  var(--primary-padding-width);
+}
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+* {
+  box-sizing: border-box;
+}
+
+path.one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+path.two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@keyframes color_anim {
+  0% {
+      fill: white;
+  }
+  50% {
+      fill: #FBC638;
+  }
+  100% {
+      fill: white;
+  }
+} 

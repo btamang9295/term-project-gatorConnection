@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<head>
+
+    <script src="../../static/scripts/restaurants.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/restaurants.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Fauna One' rel='stylesheet'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+</head>
+
+{% if messages %}
+{% for message in messages %}
+<div class="container-fluid p-0">
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="r_home_background">
+    <div class="topLeft">
+        <div class="restaurant-home-title">welcome to restaurants</div>
+        <div class="restaurant-home-mission-statement">
+            Find great restaurants and reviews by people at SF.
+        </div>
+    </div>
+
+    <div class="search-container">
+        <form  role="search" id="restaurants_search_form" action="{% url 'restaurants' %}"> 
+            
+            {% csrf_token %}
+            <select id="select_option" name="post_categories" class="filter-selectbox">
+                <option value="all" {% if search_category == 'all' %}selected{% endif %}>All</option>
+                <option value="name" {% if search_category == 'name' %}selected{% endif %}>Name</option>
+                <option value="location" {% if search_category == 'location' %}selected{% endif %}>Location</option>
+            </select>
+            <input class="restaurant_search_box" type="search" placeholder="Search for Restaurants near SFSU" name="search" {% if search_query %} value="{{search_query}}" {% endif %}/>
+
+            <button class="restaurant_search_button" type="submit" value="Search"><span
+                    class="ion-ios-search-strong">Search</span></button>
+        </form>
+    </div>
+
+</div>
+
+
+<!-- Restaurant Modal -->
+<div class="modal fade" id="modal-restaurant" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="width:500px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <center>
+                    <h4 class="modal-title">Request a restaurant</h4>
+                </center>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- input in db -->
+
+
+                <form action="{% url 'request_restaurant' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p>Name:</p></br>
+                    <p id="name-message"></p>
+                    <input type="text_modal_restaurant_post" placeholder="Restaurant Name" name="name" id= "name" required onkeyup="validate_name();"/>
+
+                    <p>Zip Code:</p>
+                    <input class="p-inline-text-box" type="text_modal_restaurant_zip_number" placeholder=" Enter Zipcode" name="zipcode" id="zip-code" required onkeyup="validate_zip_code();"/>
+                    <p id="zip-message"></p>
+
+                    <p>Street Number:</p>
+                    <input type="text_modal_restaurant_zip_number" placeholder="Enter Number" name="number" id="number" required onkeyup="validate_number();"/>
+                    <p id="number-message"></p>
+
+                    <p>Street:</p></br>
+                    <p id="street-message"></p>
+                    <input type="text_modal_restaurant_post" placeholder="Street" name="street" id="street" required onkeyup="validate_street();"/>
+                   
+                    <p>City:</p></br>
+                    <p id="city-message"></p>
+                    <input type="text_modal_restaurant_post" placeholder="City" name="city" id="city" required onkeyup="validate_city();"/>
+
+                    <p class="p-inline-business-hours"> Business Hours:
+
+                        <b> Open:</b> <input type="time" name="open-time" required/>
+                        <b>Close: </b> <input type="time" name="close-time" required/>
+                    </p>
+
+                    <div class="spacer">dsdsdsdsd</div>
+
+                    <p class="p-inline">Takeout Available:
+                        <label class="check-container"> yes
+                            <input type="radio" name="takeout" id="yes-takeout"
+                                   onclick="document.getElementById('no-takeout').checked = false">
+                            <span class="checkmark"></span>
+                        </label>
+                        <! -- both radio button should have same name in order to allow only one to be checked -->
+                        <! -- Added a class to these radios in order to work with back-end -->
+                        <label class="check-container"> no
+                            <input type="radio" name="no_takeout" id="no-takeout"
+                                   onclick="document.getElementById('yes-takeout').checked = false">
+
+                            <span class="checkmark"></span>
+                        </label>
+
+                    </p>
+
+                    <p> Description: </p></br>
+                    <p id="description-message"></p>
+                    <textarea placeholder="Enter Description of Restaurant here" type="text_restaurant_description" rows="5"
+                              cols="60" name="description" id="description" required onkeyup="validate_description();"></textarea>
+
+                    <p class="p-inline">Upload Image:
+
+                        <input type="file" id="myFile" name="image_path" accept="image/*" required/>
+
+                    </p>
+                    <input type="submit" class="submit_btn" value="submit"/>
+                </form>
+
+
+                <!-- input in db -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<!-- List of restaurants -->
+<div class="restaurant_list">
+
+    {% if restaurants_data|length > 0 %}
+    {% for restaurant_data in restaurants_data %}
+    <a href="{% url 'restaurant_detail' restaurant_id=restaurant_data.restaurant.restaurant_id %}" class="restaurant-card">
+        <img class="restaurant-image" src="media/{{restaurant_data.images.0.image_path}}"/>
+
+        <div class="restaurant-info">
+            <h4>{{restaurant_data.restaurant.name}}</h4>
+
+            <div class="star-rating-solid">
+                <input type="radio" id="5-stars" name="rating" value="5"/>
+                <label for="5-stars" class="star">{% if restaurant_data.rating.rating__avg >= 5 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                <input type="radio" id="4-stars" name="rating" value="4"/>
+                <label for="4-stars" class="star">{% if restaurant_data.rating.rating__avg >= 4 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                <input type="radio" id="3-stars" name="rating" value="3"/>
+                <label for="3-stars" class="star">{% if restaurant_data.rating.rating__avg >= 3 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                <input type="radio" id="2-stars" name="rating" value="2"/>
+                <label for="2-stars" class="star">{% if restaurant_data.rating.rating__avg >= 2 %} &#11088; {% else %} &#9733; {% endif %}</label>
+                <input type="radio" id="1-star" name="rating" value="1"/>
+                <label for="1-star" class="star">{% if restaurant_data.rating.rating__avg >= 1 %} &#11088; {% else %} &#9733; {% endif %}</label>
+            </div>
+
+
+            <p>
+                Location : {{restaurant_data.address.number}} {{restaurant_data.address.street}}, {{restaurant_data.address.city}} {{restaurant_data.address.zipcode}}<br/>
+                Open: {{restaurant_data.restaurant.open}} - {{restaurant_data.restaurant.close}}<br/>
+                Take-out: {{restaurant_data.restaurant.takeout}}<br/>
+                {{restaurant_data.restaurant.description}}
+            </p>
+        </div>
+    </a>
+
+    {% endfor %}
+    {% else %}
+    <div class="empty-search-container">
+        <div class="empty-search">No Restaurants Found</div>
+    </div>
+    {% endif %}
+</div>
+
+
+<!-- Button trigger modal -->
+
+<center>
+{% if request.session.reg_user_id == null %}
+<div style="color: white;">Please log in to Request a restaurant.</div>
+{%elif not request.session.reg_user_id == null and request.session.email_verified == False%}
+<div style="color: white;">Please check your sfsu email to verify your account to request a restaurant.</div>
+{%elif not request.session.reg_user_id == null%}
+
+<div class="wrapper" data-toggle="modal" data-target="#modal-restaurant">
+    <div class="cta">
+        <span> Don't see what you're looking for? Click here to request a restaurant!</span>
+        <span>
+  <svg width="66px" height="30px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+      <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+      <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z"
+            fill="#FFFFFF"></path>
+    </g>
+  </svg>
+</span>
+    </div>
+</div>
+
+{%endif%}
+
+   
+</center>
+<p></p>
+<p></p>
+
+
+{% endblock %}

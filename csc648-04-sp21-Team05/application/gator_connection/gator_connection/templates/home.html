@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+{% extends "Navbar/navbar.html" %}
+{% load static %}
+{% block content %}
+
+{% url 'home' as home_url %}
+{% url 'announcements' as announcements_url %}
+{% url 'shop' as shop_url %}
+{% url 'restaurants' as restaurants_url %}
+{% url 'housing' as housing_url %}
+{% url 'item' as item_url %}
+{% url 'logout_user' as logout_url %}
+{% url 'search' as search_url %}
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/home.css' %}">
+
+    <script src="../../static/scripts/maps.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <script src="../../static/scripts/style.js"></script>
+
+</head>
+<div class="home-page-content">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+</div>
+
+
+
+
+
+
+
+<center>
+<h1></h1>
+        <div class="parallax2" id="search-box">
+
+<header>
+
+    <section class="header-content">
+        <img class="animate-pop-in" src="{% static 'pictures/Gator Connection Logo Smaller.png' %}">
+
+
+            <form role="search" id="search_form" action="{% url 'search' %}">
+                {% csrf_token %}
+                <select name="post_categories" class="filter-selectbox">
+                    <option value="housing">Housing</option>
+                    <option value="item">Items</option>
+                    <option value="restaurant">Restaurants</option>
+                </select>
+                <input class="home_search_box" type="search" placeholder="Search for Housing, Items, or Restaurants" name="search"
+                       required>
+                <button class="home_search_button" type="submit" value="Search"><span
+                        class="ion-ios-search-strong">Search</span></button>
+            </form>
+
+            <h3 class="header-subtitle animate-pop-in">A one stop destination for all your school needs</h3>
+
+        </div>
+
+    </section>
+
+
+
+
+</header>
+</center>
+
+    <!--Cards-->
+
+    <div class="wrap">
+        <div class="tile">
+            <a href={{housing_url}}>
+                <img src="{% static 'pictures/h1.jpg' %}"/>
+                <div class="text">
+                    <h1>HOUSING</h1>
+                    <h2 class="animate-text">Click here to learn more</h2>
+                    <p class="animate-text">Find housing options near SF State posted by SF State students. </p>
+                    <div class="dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="tile">
+            <a href={{item_url}}>
+                <img src="{% static 'pictures/i1.jpg' %}"/>
+                <div class="text">
+                    <h1>ITEMS</h1>
+                    <h2 class="animate-text">Click here to learn more</h2>
+                    <p class="animate-text">Find used school supplies and more from SF State students.</p>
+                    <div class="dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="tile">
+            <a href={{restaurants_url}}>
+                <img src="{% static 'pictures/r1.jpg' %}"/>
+                <div class="text">
+                    <h1>RESTAURANTS</h1>
+                    <h2 class="animate-text">Click here to learn more</h2>
+                    <p class="animate-text">Find great restaurants and reviews <br>
+                        by people at SF. </p>
+                    <div class="dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="tile">
+            <a href={{announcements_url}}>
+                <img src="{% static 'pictures/a1.jpg' %}"/>
+                <div class="text">
+                    <h1>ANNOUNCEMENTS</h1>
+                    <h2 class="animate-text">Click here to learn more</h2>
+                    <p class="animate-text">Keep up with SF State events by finding recent announcements posted by verified SF State personnel. </p>
+                    <div class="dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+<center>
+<!-- Promo Section - "We know design" -->
+<div class="w3-container" style="padding:100px 16px">
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+
+        <p class="describe"> Our campus is open to the public to walk freely on the grounds,
+            and we encourage you to explore one of the most beautiful campuses in the bay area. Zoom in the map to explore virtually!</p>
+        <p><a href={{maps_url}} class="w3-button"><i > </i> + Explore More</a></p>
+      </div>
+      <div class="w3-col m6">
+      <!--<img class="w3-image w3-large" src="{% static 'pictures/mapsample.png' %}" alt="Buildings" width="400" height="300">-->  
+      
+      
+      
+      
+      
+      <div id="map-2"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGtVn9XHhCmVcbsV7OHa8YDzmon0Q0EkQ&callback=initAutocomplete2&libraries=places&v=weekly"
+              async
+      ></script>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container" style="padding:100px 16px">
+    <div class="w3-row-padding">
+        <div class="w3-col m6">
+            <img class="w3-image w3-large" src="{% static 'pictures/c1.png' %}" alt="Buildings" width="400" height="500">
+          </div>
+      <div class="w3-col m6">
+
+        <p class="describe">Health Promotion & Wellness (HPW) is now recruiting for our HPW Student Leader Program for 2021-2022!
+            <br>
+            It is a unit within Student Affairs & Enrollment Management that provides health education and actively promotes a culture of wellness </p>
+        <p><a href={{announcements_url}} class="w3-button"><i > </i> + Learn More</a></p>
+      </div>
+
+    </div>
+  <br>
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+
+        <p class="describe">Interested in Athletic scholarships?
+            <br>
+            San Francisco State University does offer scholarships for Basketball.
+            Need-based and academic scholarships are available for student-athletes.  </p>
+
+        <p><a href={{announcements_url}} class="w3-button"><i > </i> + Learn More</a></p>
+      </div>
+      <div class="w3-col m6">
+        <img class="w3-image w3-xxlarge" src="{% static 'pictures/c3.jpg' %}"  width="400" height="300">
+      </div>
+    </div>
+  </div>
+
+</center>
+
+ {% endblock %}
